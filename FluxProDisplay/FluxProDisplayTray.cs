@@ -15,8 +15,6 @@ public partial class FluxProDisplayTray : Form
     private const string ElevatedTaskName = "FluxProDisplayElevatedTask";
     
     // app settings
-    private readonly string _appName;
-    private readonly string _version;
     private readonly bool _debug;
     private readonly int _pollingInterval;
     private readonly int _vendorId;
@@ -46,8 +44,6 @@ public partial class FluxProDisplayTray : Form
         _monitor = new HardwareMonitor();
         
         // initialize variables from config file for easier changing
-        _appName = configuration.AppInfo.Info;
-        _version = configuration.AppInfo.Version;
         _debug = configuration.AppInfo.Debug;
         _pollingInterval = configuration.AppSettings.PollingInterval;
         _vendorId = configuration.AppSettings.VendorIdInt;
@@ -67,7 +63,7 @@ public partial class FluxProDisplayTray : Form
 
         _contextMenuStrip = new ContextMenuStrip();
 
-        var appNameLabel = new ToolStripLabel(_appName + " " + _version);
+        var appNameLabel = new ToolStripLabel(AppMetadata.Name + " " + AppMetadata.Version);
         appNameLabel.ForeColor = Color.Gray;
         appNameLabel.Enabled = false;
         _contextMenuStrip.Items.Add(appNameLabel);
